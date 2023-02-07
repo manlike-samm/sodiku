@@ -30,13 +30,15 @@ app.post("/", async (req, res) => {
       prompt: `${prompt}`,
       temperature: 0,
       top_p: 1,
-      presence_penalty: 0,
       frequency_penalty: 0.5,
+      presence_penalty: 0,
+      max_tokens: 2000,
     });
 
     res.status(200).send({
       bot: response.data.choices[0].text,
     });
+    console.log(response.data);
   } catch (err) {
     console.error(err);
     res.status(500).send(err || "Something went wrong");
